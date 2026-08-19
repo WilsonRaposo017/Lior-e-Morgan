@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbf5f1">
+<title>Morgan & Lior — Nosso Mundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbf5f1; --paper-2:#f4e9e3; --ink:#35272d; --muted:#76686e;
+  --rose:#c87991; --rose-dark:#9c4f69; --wine:#67384a; --gold:#b99658;
+  --sage:#8e9f8c; --white:#fffdfb; --line:rgba(103,56,74,.14);
+  --shadow:0 24px 70px rgba(75,44,54,.10); --soft-shadow:0 12px 35px rgba(75,44,54,.08);
+  --serif:'Cormorant Garamond',serif; --sans:'Manrope',sans-serif;
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+button{font:inherit;color:inherit}
+button:focus-visible{outline:2px solid var(--rose-dark);outline-offset:4px}
+::selection{background:#e7c3ce;color:var(--wine)}
+
+/* textura humana: quase imperceptível, para o papel não parecer digitalmente perfeito */
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+
+/* ---------- intro ---------- */
+.intro{position:fixed;inset:0;z-index:900;display:grid;place-items:center;background:var(--paper);transition:opacity 1s var(--ease),visibility 1s}
+.intro.out{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{text-align:center;padding:24px;max-width:620px}
+.intro-small{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.intro-title{font:500 clamp(3.4rem,12vw,7rem)/.82 var(--serif);letter-spacing:-.045em;color:var(--wine)}
+.intro-title em{font-style:italic;color:var(--rose-dark)}
+.intro-copy{margin:25px auto 34px;color:var(--muted);font-size:.92rem;line-height:1.8;max-width:410px}
+.enter{border:1px solid var(--wine);background:transparent;border-radius:999px;padding:13px 24px;cursor:pointer;transition:.35s var(--ease)}
+.enter:hover{background:var(--wine);color:white;transform:translateY(-2px)}
+
+/* ---------- global ---------- */
+.page{position:relative;z-index:1}
+.section{padding:clamp(90px,12vw,160px) 22px;max-width:1120px;margin:auto}
+.eyebrow{text-transform:uppercase;letter-spacing:.18em;font-size:.64rem;color:var(--gold);margin-bottom:15px}
+.title{font:500 clamp(2.5rem,6vw,4.8rem)/.95 var(--serif);letter-spacing:-.035em;color:var(--wine)}
+.lead{max-width:570px;color:var(--muted);line-height:1.85;font-size:.94rem;margin-top:18px}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;z-index:500;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:5px;padding:7px;background:rgba(255,253,251,.82);border:1px solid var(--line);border-radius:999px;box-shadow:var(--soft-shadow);backdrop-filter:blur(16px)}
+.nav button{border:0;background:transparent;border-radius:999px;padding:8px 11px;font-size:.67rem;color:var(--muted);cursor:pointer;transition:.25s}
+.nav button:hover,.nav button.active{background:var(--paper-2);color:var(--wine)}
+@media(max-width:680px){.nav{width:calc(100% - 24px);justify-content:space-between}.nav button{padding:9px 7px;font-size:.58rem}.nav button:nth-child(n+5){display:none}}
+
+/* ---------- hero / world ---------- */
+.hero{min-height:100svh;display:grid;place-items:center;padding:90px 22px 110px;overflow:hidden;background:radial-gradient(circle at 50% 48%,#fffdfb 0,#fbf5f1 55%,#f4e9e3 100%)}
+.hero-grid{width:min(1040px,100%);display:grid;grid-template-columns:1fr 1.05fr;gap:50px;align-items:center}
+.hero-copy{padding-left:4vw}.hero-kicker{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font:500 clamp(4rem,9vw,7.4rem)/.78 var(--serif);letter-spacing:-.055em;color:var(--wine);margin:20px 0 24px}.hero h1 span{font-style:italic;color:var(--rose-dark)}
+.hero-text{font:italic 1.18rem/1.55 var(--serif);color:#59484f;max-width:470px}
+.hero-meta{display:flex;align-items:center;gap:13px;margin-top:28px;color:var(--muted);font-size:.72rem}.dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.world-stage{display:grid;place-items:center;position:relative;min-height:520px}
+.world-button{width:min(480px,88vw);aspect-ratio:1;border:0;background:none;cursor:pointer;position:relative;filter:drop-shadow(0 25px 30px rgba(103,56,74,.12))}
+.world{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fffdfb 0,#f7ebe6 46%,#ead4cc 100%);border:1px solid rgba(103,56,74,.14);box-shadow:inset -25px -18px 60px rgba(103,56,74,.10),inset 15px 10px 40px rgba(255,255,255,.8)}
+.world:before,.world:after{content:"";position:absolute;border:1px solid rgba(103,56,74,.10);border-radius:50%;inset:12% 25%;transform:rotate(25deg)}
+.world:after{inset:25% 12%;transform:rotate(-18deg)}
+.orbit{position:absolute;inset:1%;border:1px solid rgba(185,150,88,.48);border-radius:50%;transform:rotate(-20deg) scaleY(.36);transition:transform 1.4s var(--ease)}
+.orbit.two{inset:8%;transform:rotate(68deg) scaleY(.2);border-color:rgba(200,121,145,.3)}
+.world-button:hover .orbit{transform:rotate(-2deg) scaleY(.42)}
+.world-button:hover .orbit.two{transform:rotate(82deg) scaleY(.25)}
+.continents{position:absolute;inset:14%;overflow:hidden;border-radius:50%}
+.continents svg{width:100%;height:100%;display:block}.continent{fill:#b6c3b2;opacity:.72}
+.pin{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--rose-dark);border:3px solid var(--white);box-shadow:0 0 0 5px rgba(200,121,145,.16);animation:pin 3s ease-in-out infinite}
+.pin.m{left:39%;top:40%}.pin.l{left:58%;top:58%;animation-delay:.8s}
+@keyframes pin{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.world-label{position:absolute;left:50%;bottom:-2px;transform:translateX(-50%);font:italic 1.15rem var(--serif);color:var(--wine);white-space:nowrap}
+.world-hint{position:absolute;top:7%;right:2%;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);transform:rotate(8deg)}
+.world-button.clicked .world{animation:worldPulse 1.2s var(--ease)}
+@keyframes worldPulse{0%{transform:scale(1)}35%{transform:scale(1.035)}100%{transform:scale(1)}}
+.petal{position:fixed;z-index:450;pointer-events:none;font-size:14px;color:var(--rose);animation:petalFall var(--d,3.5s) ease-out forwards}
+@keyframes petalFall{0%{opacity:0;transform:translate3d(0,0,0) rotate(0)}15%{opacity:.8}100%{opacity:0;transform:translate3d(var(--x),var(--y),0) rotate(var(--r))}}
+.world-message{position:absolute;inset:auto 0 -54px;text-align:center;font:italic 1rem var(--serif);color:var(--muted);opacity:0;transform:translateY(7px);transition:.5s var(--ease)}.world-message.show{opacity:1;transform:none}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:15px}.hero-copy{text-align:center;padding:0}.hero-text{margin:auto}.hero-meta{justify-content:center}.world-stage{min-height:390px}.world-label{bottom:-5px}}
+
+/* ---------- timeline ---------- */
+.timeline{position:relative;margin-top:60px;max-width:780px}.timeline:before{content:"";position:absolute;left:15px;top:0;bottom:0;width:1px;background:linear-gradient(var(--rose),rgba(103,56,74,.08))}
+.t-item{display:grid;grid-template-columns:31px 1fr;gap:27px;margin-bottom:55px}.t-mark{width:31px;height:31px;border-radius:50%;background:var(--paper);border:1px solid var(--rose);position:relative;z-index:1}.t-mark:after{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--rose);left:11px;top:11px}.t-card{background:rgba(255,253,251,.62);border:1px solid var(--line);padding:25px 28px;border-radius:5px 22px 22px 22px;box-shadow:0 8px 30px rgba(75,44,54,.04)}.t-card h3{font:500 1.6rem var(--serif);color:var(--wine);margin-bottom:7px}.t-card p{color:var(--muted);line-height:1.75;font-size:.88rem}
+
+/* ---------- counter ---------- */
+.counter{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}.time{padding:25px 10px;text-align:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.time strong{display:block;font:500 clamp(2rem,5vw,3.6rem) var(--serif);color:var(--wine);font-variant-numeric:tabular-nums}.time span{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:620px){.counter{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- rules ---------- */
+.rules-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}.rule{min-height:190px;background:var(--white);border:1px solid var(--line);padding:25px;border-radius:4px 22px 4px 22px;transition:.35s var(--ease)}.rule:hover{transform:translateY(-5px) rotate(-.4deg);box-shadow:var(--soft-shadow);border-color:rgba(156,79,105,.28)}.rule-no{font-size:.62rem;color:var(--gold);letter-spacing:.14em}.rule h3{font:500 1.45rem/1.05 var(--serif);color:var(--wine);margin:18px 0 10px}.rule p{font-size:.78rem;line-height:1.65;color:var(--muted)}
+@media(max-width:820px){.rules-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.rules-grid{grid-template-columns:1fr}}
+
+/* ---------- carousel common ---------- */
+.carousel-wrap{position:relative;margin:48px auto 0;max-width:700px}.card-paper{background:var(--white);border:1px solid var(--line);box-shadow:var(--shadow);min-height:340px;padding:clamp(30px,6vw,60px);display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}.card-paper:before{content:"";position:absolute;left:25px;top:0;bottom:0;width:1px;background:rgba(200,121,145,.18)}.card-paper:after{content:"";position:absolute;right:26px;top:26px;width:70px;height:70px;border:1px solid rgba(185,150,88,.22);border-radius:50%}.card-index{font-size:.62rem;letter-spacing:.17em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}.card-category{font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;color:var(--rose-dark);margin-bottom:8px}.card-title{font:500 clamp(2rem,5vw,3.4rem)/.95 var(--serif);color:var(--wine);margin-bottom:18px}.card-text{font:italic 1.12rem/1.75 var(--serif);color:#59484f;max-width:540px;white-space:pre-line}.controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}.arrow{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;cursor:pointer;transition:.3s}.arrow:hover{background:var(--wine);color:white;border-color:var(--wine)}.counter-small{font-size:.68rem;color:var(--muted);min-width:80px;text-align:center}.dots{display:flex;justify-content:center;gap:6px;margin-top:18px}.dots i{width:5px;height:5px;border-radius:50%;background:#d8c7c8}.dots i.active{background:var(--rose-dark);transform:scale(1.3)}
+
+/* ---------- letters ---------- */
+.letters{background:#f4e8e1;max-width:none}.letter-intro{max-width:1120px;margin:auto}.letter-card{background:#fffdfa;min-height:460px;padding:clamp(35px,7vw,75px);box-shadow:var(--shadow);position:relative;border:1px solid rgba(103,56,74,.12)}.letter-card:before{content:"Para Morgan";position:absolute;top:24px;right:28px;font:italic .95rem var(--serif);color:var(--rose-dark)}.letter-seal{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-size:1.1rem;color:var(--gold);opacity:.7}.letter-head{font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}.letter-title{font:500 clamp(2.4rem,6vw,4rem) var(--serif);color:var(--wine);margin-bottom:24px}.letter-body{font:italic 1.1rem/1.9 var(--serif);white-space:pre-line;color:#55464c;max-width:650px}.letter-sign{font:italic 1.1rem var(--serif);color:var(--rose-dark);display:block;text-align:right;margin-top:28px}.letter-nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}.letter-nav button{border:0;background:none;color:var(--wine);cursor:pointer;font-size:.72rem}.letter-nav button:disabled{opacity:.25;cursor:default}.letter-progress{font-size:.65rem;color:var(--muted)}
+
+/* ---------- flower garden ---------- */
+.garden{background:#f8f2ee;max-width:none}.garden-inner{max-width:1120px;margin:auto}.garden-bed{height:350px;position:relative;overflow:hidden;border-bottom:1px solid var(--line);margin-top:50px;background:linear-gradient(#fbf7f4 0 72%,#eadfd4 72%)}.ground{position:absolute;left:-5%;right:-5%;bottom:-80px;height:150px;background:#d9cdbf;border-radius:50% 50% 0 0}.flower-seed{position:absolute;bottom:62px;width:24px;height:150px;transform-origin:bottom;animation:grow 1.1s var(--ease) both}.stem2{position:absolute;left:11px;bottom:0;width:2px;height:100px;background:var(--sage);transform-origin:bottom}.bloom{position:absolute;left:50%;top:0;transform:translateX(-50%) scale(.1);width:48px;height:48px;opacity:0;transition:.7s var(--ease)}.flower-seed.bloomed .bloom{transform:translateX(-50%) scale(1);opacity:1}.bloom span{position:absolute;width:22px;height:32px;border-radius:50% 50% 45% 45%;background:var(--rose);left:13px;top:8px;transform-origin:50% 16px}.bloom span:nth-child(1){transform:rotate(0)}.bloom span:nth-child(2){transform:rotate(72deg)}.bloom span:nth-child(3){transform:rotate(144deg)}.bloom span:nth-child(4){transform:rotate(216deg)}.bloom span:nth-child(5){transform:rotate(288deg)}.bloom i{position:absolute;width:11px;height:11px;border-radius:50%;background:var(--gold);left:19px;top:19px}.garden-note{position:absolute;left:50%;top:35px;transform:translateX(-50%);font:italic 1.4rem var(--serif);color:var(--wine);white-space:nowrap;opacity:0;transition:.6s}.garden-note.show{opacity:1}.garden-button{display:block;margin:30px auto 0;border:1px solid var(--wine);background:transparent;padding:12px 22px;border-radius:999px;cursor:pointer}.garden-button:hover{background:var(--wine);color:#fff}
+
+/* ---------- small phrases ---------- */
+.phrase{min-height:45vh;display:grid;place-items:center;text-align:center;padding:70px 22px}.phrase blockquote{max-width:760px;font:italic clamp(2rem,5vw,4rem)/1.05 var(--serif);color:var(--wine)}.phrase cite{display:block;font:400 .68rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:25px;font-style:normal}
+
+/* ---------- ending ---------- */
+.final{min-height:100svh;display:grid;place-items:center;text-align:center;padding:100px 22px;background:#eee0d9;position:relative;overflow:hidden}.final-flower{font-size:4rem;color:var(--rose-dark);margin-bottom:25px;animation:breathe 4s ease-in-out infinite}.final h2{font:500 clamp(3rem,8vw,6.5rem)/.85 var(--serif);color:var(--wine);letter-spacing:-.05em}.final p{font:italic 1.2rem var(--serif);color:var(--muted);margin-top:25px}.signature{margin-top:45px;font:italic 1.25rem var(--serif);color:var(--rose-dark)}@keyframes breathe{50%{transform:scale(1.06)}}
+
+.reveal{opacity:0;transform:translateY(18px);transition:.8s var(--ease)}.reveal.visible{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body class="locked">
+<section class="intro" id="intro"><div class="intro-inner"><div class="intro-small">um pequeno presente</div><h1 class="intro-title">Morgan <em>&</em> Lior</h1><p class="intro-copy">Não é uma página para mostrar. É um lugar pequeno para guardar coisas que normalmente ficam por dizer.</p><button class="enter" id="enter">Entrar no nosso mundo</button></div></section>
+
+<nav class="nav" aria-label="Navegação"><button data-go="home">Início</button><button data-go="time">Tempo</button><button data-go="rules">Regras</button><button data-go="reasons">100 motivos</button><button data-go="letters">100 cartas</button><button data-go="garden">Flores</button></nav>
+
+<main class="page">
+<section class="hero" id="home"><div class="hero-grid"><div class="hero-copy reveal"><div class="hero-kicker">19 de agosto · mais um capítulo</div><h1>Morgan <span>&</span><br>Lior</h1><p class="hero-text">“Se existe um lugar que eu gostaria de continuar construindo, é este: o nosso.”</p><div class="hero-meta"><span>desde 20 de maio de 2026</span><i class="dot"></i><span>nosso mundo</span></div></div>
+<div class="world-stage reveal"><button class="world-button" id="worldButton" aria-label="Abrir o nosso mundo"><div class="world"><div class="continents"><svg viewBox="0 0 500 500" aria-hidden="true"><path class="continent" d="M80 140l25-28 42 5 18 23 35 5 20 28-17 22-33-4-17 20-38-8-19-31z"/><path class="continent" d="M207 225l28 12 18 35-11 32 10 32-24 45-25-18 3-38-17-29 10-32z"/><path class="continent" d="M282 135l35-19 52 10 30 29-8 26-35 9-21 26-31-7-16-28-26-15z"/><path class="continent" d="M363 257l46-7 39 25-14 28-31 4-25 25-32-14-4-31z"/><path class="continent" d="M137 300l27 14 10 35-18 32-25-12-10-31z"/></svg></div></div><div class="orbit"></div><div class="orbit two"></div><div class="pin m" title="M"></div><div class="pin l" title="L"></div><span class="world-hint">clique</span><span class="world-label">Nosso mundo</span></button><div class="world-message" id="worldMessage">Alguns lugares não aparecem no mapa. Este é um deles.</div></div></div></section>
+
+<section class="section center" id="time"><div class="eyebrow">tempo real</div><h2 class="title">O tempo passou.<br>Nós também.</h2><p class="lead">Não quero medir o que sentimos por números. Mas gosto de lembrar que, desde aquele dia, já vivemos milhares de segundos que não existiam antes.</p><div class="counter"><div class="time"><strong id="months">0</strong><span>meses</span></div><div class="time"><strong id="days">0</strong><span>dias</span></div><div class="time"><strong id="hours">00</strong><span>horas</span></div><div class="time"><strong id="seconds">00</strong><span>segundos</span></div></div></section>
+
+<section class="section" id="story"><div class="eyebrow">a nossa história</div><h2 class="title">Não precisamos inventar<br>uma história perfeita.</h2><p class="lead">Basta guardar aquilo que valeu a pena. E deixar espaço para o que ainda não aconteceu.</p><div class="timeline"><article class="t-item reveal"><div class="t-mark"></div><div class="t-card"><h3>O começo</h3><p>20 de maio de 2026. Uma data simples no calendário que ganhou outro peso.</p></div></article><article class="t-item reveal"><div class="t-mark"></div><div class="t-card"><h3>Os dias comuns</h3><p>Porque relacionamento não vive só de grandes momentos. Vive também de conversas, brincadeiras, silêncios e pequenas escolhas.</p></div></article><article class="t-item reveal"><div class="t-mark"></div><div class="t-card"><h3>O que estamos aprendendo</h3><p>Amar sem possuir. Falar sem ferir. Dar espaço sem criar distância. Continuar sendo duas pessoas inteiras.</p></div></article><article class="t-item reveal"><div class="t-mark"></div><div class="t-card"><h3>Hoje</h3><p>Mais um mês. Não como uma garantia de futuro, mas como mais uma parte da história que decidimos viver.</p></div></article></div></section>
+
+<section class="section" id="rules"><div class="eyebrow">para nós dois</div><h2 class="title">Regras do nosso amor</h2><p class="lead">Não são regras para controlar. São lembretes para quando a emoção estiver alta demais e a cabeça precisar lembrar do que importa.</p><div class="rules-grid" id="rulesGrid"></div></section>
+
+<section class="section" id="reasons"><div class="eyebrow">100 pequenas respostas</div><h2 class="title">100 motivos para amar você</h2><p class="lead">Não porque você precise de 100 motivos para ser amada. Mas porque eu gosto da ideia de procurar detalhes.</p><div class="carousel-wrap"><article class="card-paper" id="reasonCard"></article><div class="controls"><button class="arrow" id="reasonPrev" aria-label="Motivo anterior">←</button><div class="counter-small" id="reasonCounter">01 / 100</div><button class="arrow" id="reasonNext" aria-label="Próximo motivo">→</button></div><div class="dots" id="reasonDots"></div></div></section>
+
+<section class="section letters" id="letters"><div class="letter-intro"><div class="eyebrow">correspondência</div><h2 class="title">100 cartas de Lior<br>para Morgan</h2><p class="lead">Algumas cartas são grandes. Outras cabem em poucas linhas. Nenhuma precisa ser perfeita.</p><div class="carousel-wrap"><article class="letter-card" id="letterCard"></article><div class="letter-nav"><button id="letterPrev">← anterior</button><span class="letter-progress" id="letterCounter">Carta 01 de 100</span><button id="letterNext">próxima →</button></div></div></div></section>
+
+<section class="section garden" id="garden"><div class="garden-inner center"><div class="eyebrow">florescer</div><h2 class="title">O que é cuidado<br>cresce.</h2><p class="lead">Clique para plantar uma flor. Não há prêmio. Só a pequena satisfação de ver alguma coisa nascer porque você parou para cuidar.</p><div class="garden-bed" id="gardenBed"><div class="ground"></div><div class="garden-note" id="gardenNote">“Nem tudo precisa florescer no mesmo dia.”</div></div><button class="garden-button" id="plant">plantar uma flor</button></div></section>
+
+<section class="phrase"><div><blockquote>“Quero estar perto de você sem ocupar o espaço que é seu.”</blockquote><cite>— uma das coisas que quero lembrar</cite></div></section>
+<section class="section center"><div class="eyebrow">versos</div><h2 class="title">Algumas coisas eu não sei dizer.</h2><div class="carousel-wrap"><article class="card-paper" id="poemCard"></article><div class="controls"><button class="arrow" id="poemPrev">←</button><div class="counter-small" id="poemCounter">01 / 04</div><button class="arrow" id="poemNext">→</button></div></div></section>
+
+<section class="final" id="final"><div><div class="final-flower">✿</div><h2>Mais um mês.<br>E ainda escolheria<br>você.</h2><p>Que venham os próximos — sem pressa, sem perfeição, mas com verdade.</p><div class="signature">— Lior</div></div></section>
+</main>
+
+<script>
+'use strict';
+const CONFIG={start:new Date(2026,4,20,0,0,0)};
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+const rules=[
+['01','Falar antes de acumular.','O silêncio pode ser descanso; não deve virar castigo.'],
+['02','Perguntar em vez de presumir.','Nem tudo o que parece óbvio é verdade.'],
+['03','Não tentar vencer uma discussão.','O objetivo é entender e ser entendido.'],
+['04','Respeitar o espaço.','Amor não transforma duas pessoas numa só.'],
+['05','Pedir desculpa quando for preciso.','Orgulho não conserta o que uma conversa sincera consegue consertar.'],
+['06','Não usar o passado como arma.','O que foi resolvido não deve voltar como munição.'],
+['07','Não transformar insegurança em controle.','Confiança não cresce em vigilância.'],
+['08','Celebrar as pequenas coisas.','Nem toda conquista precisa de plateia.'],
+['09','Dizer a verdade com cuidado.','Honestidade sem respeito também machuca.'],
+['10','Continuar tendo uma vida própria.','Quero caminhar contigo, não substituir o teu caminho.'],
+['11','Não deixar a rotina apagar a intenção.','Pequenos gestos mantêm vivo aquilo que grandes promessas não conseguem.'],
+['12','Quando um estiver cansado, diminuir o ritmo.','Nem todo dia precisa ser resolvido.'],
+['13','Não comparar o nosso relacionamento.','A nossa história não precisa parecer com a de ninguém.'],
+['14','Dar espaço para mudar.','Nós dois vamos crescer e nem sempre seremos exatamente iguais.'],
+['15','Escolher respeito mesmo com raiva.','A emoção passa; certas palavras ficam.'],
+['16','Ser abrigo, não prisão.','Quero que estar comigo seja escolha, não obrigação.'],
+['17','Rir quando der.','A vida já é séria demais para perder todas as piadas.'],
+['18','Não fingir que está tudo bem.','Verdade também é cuidado.'],
+['19','Lembrar do motivo, não só do problema.','Uma dificuldade não apaga tudo o que existe fora dela.'],
+['20','Continuar escolhendo.','Amor é sentimento, mas também é comportamento.']
+];
+const reasons=[
+'Porque o teu jeito de existir tem coisas que eu ainda quero descobrir.',
+'Porque gosto dos pequenos detalhes que fazem você ser você.',
+'Porque conversar contigo pode transformar um dia comum em alguma coisa melhor.',
+'Porque admiro a pessoa que você é quando ninguém está tentando impressionar ninguém.',
+'Porque há coisas em você que não cabem numa fotografia.',
+'Porque você me faz prestar atenção em detalhes que eu normalmente deixaria passar.',
+'Porque gosto quando conseguimos rir de coisas pequenas.',
+'Porque não quero amar uma versão inventada de você; quero conhecer a real.',
+'Porque gosto da ideia de acompanhar teu crescimento sem tentar controlá-lo.',
+'Porque você me lembra que carinho também pode ser silencioso.',
+'Porque há dias em que a tua presença simplesmente deixa tudo menos pesado.',
+'Porque gosto das conversas que não precisam chegar a lugar nenhum.',
+'Porque admiro quando você é você, sem performance.',
+'Porque não preciso transformar tudo em espetáculo para sentir que algo é importante.',
+'Porque gosto de imaginar quantas versões de nós ainda não conhecemos.',
+'Porque você não precisa ser perfeita para ser importante para mim.',
+'Porque gosto quando um detalhe teu fica na minha cabeça sem pedir licença.',
+'Porque aprendo coisas sobre mim enquanto aprendo coisas sobre você.',
+'Porque quero conhecer também os teus dias difíceis, não apenas os bonitos.',
+'Porque respeito a pessoa que você é além de ser minha namorada.',
+'Porque gosto quando a gente consegue discordar e continuar sendo nós.',
+'Porque teu lugar na minha vida não precisa apagar o resto da minha vida.',
+'Porque amor fica mais bonito quando existe liberdade.',
+'Porque quero que você cresça mesmo que isso signifique mudar algumas coisas em nós.',
+'Porque há uma diferença entre estar perto e realmente estar presente.',
+'Porque gosto de estar presente contigo.',
+'Porque gosto das pequenas surpresas que uma pessoa real oferece.',
+'Porque ainda existem conversas nossas que nem aconteceram.',
+'Porque ainda existem lugares que não conhecemos juntos.',
+'Porque ainda existem versões de nós que vão nascer com o tempo.',
+'Porque gosto de pensar no futuro sem precisar fingir que sei exatamente como ele será.',
+'Porque não quero prometer perfeição; quero prometer honestidade.',
+'Porque gosto da tranquilidade que existe quando não precisamos provar nada.',
+'Porque você pode ser importante sem ser o centro de todas as coisas.',
+'Porque isso torna o que sentimos mais real, não menos.',
+'Porque gosto quando carinho aparece em coisas que ninguém mais percebe.',
+'Porque algumas das melhores partes de uma relação são quase invisíveis.',
+'Porque gosto de aprender teu ritmo.',
+'Porque também quero que você aprenda o meu.',
+'Porque relacionamento é encontro, não fusão.',
+'Porque admiro a tua individualidade.',
+'Porque quero preservar isso.',
+'Porque gosto de quando o silêncio entre nós não precisa ser preenchido.',
+'Porque gosto quando uma conversa começa pequena e termina enorme.',
+'Porque há momentos em que uma simples mensagem muda meu humor.',
+'Porque você ocupa espaço na minha memória de um jeito bonito.',
+'Porque gosto de guardar frases que você disse sem perceber.',
+'Porque alguns detalhes teus viraram pequenos pontos de referência no meu dia.',
+'Porque você me faz perceber o valor de estar atento.',
+'Porque carinho não precisa ser barulhento.',
+'Porque gosto quando conseguimos ser bobos juntos.',
+'Porque maturidade não precisa matar a brincadeira.',
+'Porque quero que a nossa relação tenha leveza e profundidade.',
+'Porque uma coisa não precisa excluir a outra.',
+'Porque gosto da ideia de construir em vez de apenas desejar.',
+'Porque construir exige presença.',
+'Porque quero oferecer presença.',
+'Porque também quero receber presença.',
+'Porque gosto de saber que ainda temos muito para aprender.',
+'Porque uma relação sem aprendizado vira repetição.',
+'Porque não quero que a nossa vire apenas rotina.',
+'Porque quero continuar percebendo você.',
+'Porque pessoas mudam.',
+'Porque eu também mudo.',
+'Porque escolher alguém de verdade inclui conhecer as mudanças.',
+'Porque gosto da honestidade que existe nisso.',
+'Porque você me faz pensar sobre o que significa cuidar.',
+'Porque cuidar não é controlar.',
+'Porque quero aprender essa diferença todos os dias.',
+'Porque gosto de quando uma pequena atitude diz mais que um texto enorme.',
+'Porque palavras são bonitas, mas comportamento é onde elas ganham peso.',
+'Porque quero que as minhas palavras tenham comportamento por trás.',
+'Porque gosto de pensar que podemos melhorar sem fingir que já sabemos tudo.',
+'Porque não quero ter sempre razão.',
+'Porque quero ter mais compreensão.',
+'Porque gosto da ideia de duas pessoas escolhendo conversar.',
+'Porque conversar exige coragem.',
+'Porque você merece sinceridade.',
+'Porque eu também mereço sinceridade.',
+'Porque confiança se constrói em pequenas repetições.',
+'Porque quero repetir coisas boas.',
+'Porque gosto da ideia de segurança sem posse.',
+'Porque quero que você se sinta livre para ser você.',
+'Porque quero sentir a mesma liberdade.',
+'Porque amor sem liberdade fica pequeno.',
+'Porque quero um amor que tenha espaço para respirar.',
+'Porque gosto de respirar sem precisar sair.',
+'Porque gosto de saber que existe um “nós” sem apagar o “eu”.',
+'Porque ainda temos histórias para escrever.',
+'Porque algumas páginas ainda estão completamente vazias.',
+'Porque isso me deixa curioso.',
+'Porque curiosidade também é uma forma de carinho.',
+'Porque quero continuar conhecendo você.',
+'Porque ainda não terminei de encontrar motivos.',
+'Porque talvez 100 nunca sejam suficientes.',
+'Porque este é só o motivo número 100.',
+'Porque, no fim, não é uma lista que explica o que sinto.',
+'Porque você é uma pessoa real, e é exatamente isso que torna tudo mais interessante.'
+];
+const poems=[
+['Sobre ficar','Não quero te prometer
+um céu sem chuva.
+Quero aprender contigo
+a atravessar os dias
+sem transformar cada nuvem
+num motivo para ir embora.'],
+['Sobre liberdade','Quero estar perto
+sem te diminuir.
+Quero ser casa
+sem ser parede.
+Quero que o nosso amor
+te dê espaço para crescer.'],
+['Sobre o tempo','Mais um mês
+não é eternidade.
+É só mais um pedaço de tempo
+que tivemos a sorte
+de viver acordados.'],
+['Sobre nós','Talvez amar seja isso:
+não encontrar alguém perfeito,
+mas encontrar alguém real
+e decidir prestar atenção.']
+];
+const letters=[
+['01','O começo','Nossa primeira página','Morgan,\n\nhoje quero começar pelo começo. Não porque o começo seja a parte mais importante, mas porque foi onde uma coisa que ainda não conhecíamos começou a existir.\n\nMais um mês parece pequeno quando escrito. Para mim, não é.\n\n— Lior'],
+['02','Obrigado','Pelo que é simples','Morgan,\n\nobrigado pelas coisas que talvez nem pareçam importantes. Uma conversa, uma resposta, uma brincadeira, um momento em que o dia ficou um pouco mais leve.\n\nÉ curioso como uma relação é feita muito mais dessas pequenas coisas do que de grandes declarações.\n\n— Lior'],
+['03','Você','Sem te transformar em personagem','Eu não quero escrever sobre uma Morgan perfeita. Isso seria fácil demais e, principalmente, seria falso.\n\nQuero escrever sobre você como você é: humana, complexa, às vezes difícil de entender, às vezes surpreendente. É justamente aí que existe algo para conhecer.\n\n— Lior'],
+['04','Nós','Duas pessoas inteiras','Quero que continuemos sendo duas pessoas inteiras. Não duas metades procurando uma pela outra para conseguir existir.\n\nQuero escolher você porque quero, não porque preciso desaparecer dentro de alguém.\n\n— Lior'],
+['05','Nos dias difíceis','Sem prometer resolver tudo','Se um dia você estiver mal, talvez eu não tenha a solução. E tudo bem.\n\nÀs vezes cuidar não é consertar. É ficar. É ouvir. É não transformar a dor do outro numa disputa para saber quem tem razão.\n\nQuero aprender isso contigo.\n\n— Lior'],
+['06','Saudade','Quando você não está','Saudade é estranha. Às vezes aparece sem pedir licença, no meio de alguma coisa completamente normal.\n\nTalvez seja só a memória lembrando que alguém passou a ter importância.\n\n— Lior'],
+['07','Futuro','Sem fingir que sabemos','Eu não sei exatamente como será o futuro. E prefiro admitir isso.\n\nSó sei que gosto da ideia de existir um futuro onde ainda possamos olhar para trás e reconhecer que fizemos algumas escolhas certas.\n\n— Lior'],
+['08','Uma coisa que admiro','A tua individualidade','Existe uma coisa que quero proteger: a pessoa que você é fora de mim.\n\nQuero te amar sem tentar editar tua personalidade para caber na minha expectativa.\n\nIsso é amor também.\n\n— Lior'],
+['09','Quando discutirmos','Lembrar do que importa','Se algum dia estivermos com raiva, espero que a gente consiga lembrar que uma discussão é um momento, não a definição inteira da relação.\n\nQuero que a gente aprenda a parar antes de ferir só porque está ferido.\n\n— Lior'],
+['10','Mais um mês','A carta de hoje','Morgan,\n\nmais um mês. Não quero transformar isso numa promessa exagerada. Quero apenas reconhecer o que existe agora: nós dois, ainda aprendendo, ainda descobrindo, ainda escrevendo.\n\nE, sinceramente, eu gosto desta página.\n\n— Lior']
+];
+// Preenche as 100 cartas sem fingir que existem 100 acontecimentos específicos.
+const letterThemes=['uma coisa pequena','uma conversa','um dia comum','uma pergunta','uma lembrança','uma coisa que admiro','uma coisa que quero aprender','um futuro possível','um erro que quero evitar','uma escolha'];
+while(letters.length<100){const n=letters.length+1, theme=letterThemes[(n-1)%letterThemes.length];letters.push([String(n).padStart(2,'0'),`Carta ${String(n).padStart(2,'0')}`,theme,`Morgan,\n\nesta carta eu não quero inventar uma história que não aconteceu. Quero escrever sobre uma coisa simples: ${theme}.\n\nAinda existem muitas coisas que não sei sobre nós, e talvez seja justamente isso que torna interessante continuar. Não quero preencher todos os espaços com frases bonitas. Quero deixar alguns vazios para a vida preencher.\n\nSe esta carta servir para alguma coisa, que seja para lembrar que carinho também mora na atenção aos detalhes.\n\n— Lior`]);}
+
+// regras
+$('#rulesGrid').innerHTML=rules.map(r=>`<article class="rule reveal"><span class="rule-no">REGRA ${r[0]}</span><h3>${r[1]}</h3><p>${r[2]}</p></article>`).join('');
+
+// world interaction
+$('#worldButton').addEventListener('click',()=>{const b=$('#worldButton'),msg=$('#worldMessage');b.classList.remove('clicked');void b.offsetWidth;b.classList.add('clicked');msg.classList.add('show');for(let i=0;i<16;i++){const p=document.createElement('span');p.className='petal';p.textContent=i%3?'✿':'·';p.style.left=(45+Math.random()*10)+'%';p.style.top=(38+Math.random()*20)+'%';p.style.setProperty('--x',((Math.random()-.5)*420)+'px');p.style.setProperty('--y',(-80-Math.random()*300)+'px');p.style.setProperty('--r',((Math.random()-.5)*700)+'deg');p.style.setProperty('--d',(2.2+Math.random()*2)+'s');document.body.appendChild(p);setTimeout(()=>p.remove(),4500)}});
+
+// counter
+function breakdown(start,now){let y=now.getFullYear()-start.getFullYear(),m=now.getMonth()-start.getMonth(),d=now.getDate()-start.getDate(),h=now.getHours()-start.getHours(),s=now.getSeconds()-start.getSeconds();if(s<0){s+=60;now=new Date(now-60000)}if(d<0){d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();m--}if(m<0){m+=12;y--}return{months:y*12+m,days:d,hours:h,seconds:s}}
+function tick(){const b=breakdown(CONFIG.start,new Date());$('#months').textContent=b.months;$('#days').textContent=b.days;$('#hours').textContent=String(b.hours).padStart(2,'0');$('#seconds').textContent=String(b.seconds).padStart(2,'0')}tick();setInterval(tick,1000);
+
+// generic carousel
+function carousel(items,el,counter,prev,next,render){let i=0;function show(){el.style.opacity='0';el.style.transform='translateY(5px)';setTimeout(()=>{el.innerHTML=render(items[i],i);counter.textContent=counter.dataset.type==='letter'?`Carta ${String(i+1).padStart(2,'0')} de 100`:`${String(i+1).padStart(2,'0')} / ${items.length}`;el.style.opacity='1';el.style.transform='none'},reduced?0:180)}function go(d){i=(i+d+items.length)%items.length;show()}prev.addEventListener('click',()=>go(-1));next.addEventListener('click',()=>go(1));let sx=0;el.addEventListener('touchstart',e=>sx=e.changedTouches[0].clientX,{passive:true});el.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)go(dx<0?1:-1)},{passive:true});show();return{go}}
+carousel(reasons,$('#reasonCard'),$('#reasonCounter'),$('#reasonPrev'),$('#reasonNext'),(x,i)=>`<span class="card-index">motivo ${String(i+1).padStart(2,'0')}</span><h3 class="card-title">${x}</h3><span class="card-category">para Morgan</span>`);
+const lc=$('#letterCounter');lc.dataset.type='letter';carousel(letters,$('#letterCard'),lc,$('#letterPrev'),$('#letterNext'),x=>`<div class="letter-head">${x[0]} · ${x[1]}</div><h3 class="letter-title">${x[2]}</h3><div class="letter-body">${x[3].replace(/\n/g,'<br>')}</div>`);
+carousel(poems,$('#poemCard'),$('#poemCounter'),$('#poemPrev'),$('#poemNext'),x=>`<span class="card-category">${x[0]}</span><div class="card-text">${x[1]}</div>`);
+
+// garden
+const gardenNotes=['Nem tudo precisa florescer no mesmo dia.','Cuidado também é uma forma de dizer “estou aqui”.','Algumas raízes crescem em silêncio.','O que é cuidado não precisa ser apressado.','A gente também aprende a florescer.'];let gi=0;$('#plant').addEventListener('click',()=>{const bed=$('#gardenBed'),f=document.createElement('div');f.className='flower-seed';f.style.left=(8+Math.random()*84)+'%';f.innerHTML='<div class="stem2"></div><div class="bloom"><span></span><span></span><span></span><span></span><span></span><i></i></div>';bed.appendChild(f);requestAnimationFrame(()=>f.classList.add('bloomed'));$('#gardenNote').textContent='“'+gardenNotes[gi%gardenNotes.length]+'”';$('#gardenNote').classList.add('show');gi++});
+
+// intro + nav
+$('#enter').addEventListener('click',()=>{$('#intro').classList.add('out');document.body.classList.remove('locked');setTimeout(()=>$('#intro').remove(),1100)});
+$$('.nav button').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.go==='time'?'time':b.dataset.go==='home'?'home':b.dataset.go;$('#'+id)?.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'})}));
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});$$('.reveal').forEach(x=>observer.observe(x));
+const sections=['home','time','rules','reasons','letters','garden'];const navBtns=$$('.nav button');const navObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const i=sections.indexOf(e.target.id);navBtns.forEach((b,j)=>b.classList.toggle('active',j===i))}}),{threshold:.35});sections.forEach(id=>{const el=$('#'+id);if(el)navObs.observe(el)});
+window.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')document.querySelector('.arrow:focus')?.click();});
+</script>
+</body>
+</html>
